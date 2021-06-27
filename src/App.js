@@ -1,7 +1,7 @@
 import './App.css';
 import GraphArea  from './components/GraphArea';
 import styled from 'styled-components';
-import  {setFlex} from "./styles";
+import  {setFlex, setColor} from "./styles";
 import Globals from './components/GlobalStyles';
 
 import React, { Component } from 'react';
@@ -25,6 +25,7 @@ align-items: center;
 justify-content: center;
 height: 100vh;
 width: 100vw;
+background: ${setColor.gray};
 `;
 
 export default App;

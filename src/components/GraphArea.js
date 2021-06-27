@@ -21,7 +21,7 @@ display: flex;
     justify-content: center;
 height: 80vh;
 width: 80vw;
-background: ${setColor.gray};
+
 
 `;
 export default GraphArea;
