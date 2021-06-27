@@ -16,7 +16,9 @@ class GraphArea extends Component {
 }
 
 export const GraphWrapper = styled.div`
-${setFlex("center", "center", "column")};
+display: flex;
+    align-items: center;
+    justify-content: center;
 height: 80vh;
 width: 80vw;
 background: ${setColor.gray};

@@ -20,7 +20,9 @@ class App extends Component {
 }
 
 export const AppWrapper = styled.div`
-${setFlex("center", "center", "column")};
+display: flex;
+align-items: center;
+justify-content: center;
 height: 100vh;
 width: 100vw;
 `;

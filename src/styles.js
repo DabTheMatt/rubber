@@ -10,5 +10,5 @@ export const setColor = {
 };
 
 export const setFlex = ({ x = "center", y = "center", z = "row" } = {}) => {
-    return `display:flex;align-items:${x};justify-content:${y};flex-direction"${z}`;
+    return `display:flex;align-items:${x};justify-content:${y};flex-direction:"${z}`;
 };
