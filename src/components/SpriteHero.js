@@ -62,7 +62,7 @@ class SpriteHero extends Component {
     })
     
     
-    if (this.state.topOff === this.state.top2Off && this.state.leftOff === this.state.left2Off) {
+    if (this.state.top === this.state.top2 && this.state.left === this.state.left2) {
         this.setState({
             div1Color: "red",
             div2Color: "red"
