@@ -3,13 +3,14 @@ import styled from "styled-components";
 import {setColor, setFlex} from "../styles";
 import Graph from "./Graph";
 import BlueGraph from "./BlueGraph";
+import Playground from './Playground';
 
 class GraphArea extends Component {
     render() {
         return (
             <GraphWrapper>
-                <BlueGraph />
                 
+                <Playground />
             </GraphWrapper>
         );
     }
