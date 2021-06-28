@@ -4,14 +4,16 @@ import { setColor } from "../styles";
 
 class SpriteHero extends Component {
   state = {
-    top: 380,
-    left: 380,
+    top: 20,
+    left: 20,
     topOff: "",
     leftOff: "",
     top2: 280,
     left2: 280,
-    top2Off: "",
-    left2Off: ""
+    top2Off: 0,
+    left2Off: 1,
+    div1Color: "black",
+    div2Color: "white"
   };
 
   handleKeyDown = (e) => {
@@ -31,55 +33,77 @@ class SpriteHero extends Component {
       this.setState({
         top: this.state.top + 10,
       });
-    }
+    } else if (e.keyCode === 87) {
+        this.setState({
+            top2: this.state.top2 - 10
+        })
+    } else if (e.keyCode === 65) {
+        this.setState({
+          left2: this.state.left2 - 10,
+        });
+      } else if (e.keyCode === 83) {
+        this.setState({
+          top2: this.state.top2 + 10,
+        });
+      } else if (e.keyCode === 68) {
+        this.setState({
+          left2: this.state.left2 + 10,
+        });
+      }
+      
     const div1 = document.getElementById("div1");
-    console.log("pressed", e.keyCode, "top:", div1.offsetTop, "left", div1.offsetLeft);
+    const div2 = document.getElementById("div2");
+    console.log("pressed", e.keyCode, "top:", div1.offsetTop, "left", div1.offsetLeft, e.keyCode, "top2:", div2.offsetTop, "left2", div2.offsetLeft);
     this.setState({
         topOff: div1.offsetTop,
-        leftOff: div1.offsetLeft
+        leftOff: div1.offsetLeft,
+        top2Off: div2.offsetTop,
+        left2Off: div2.offsetLeft 
     })
-    this.handleCollision();
+    
+    
+    if (this.state.topOff === this.state.top2Off && this.state.leftOff === this.state.left2Off) {
+        this.setState({
+            div1Color: "red",
+            div2Color: "red"
+        })
+        console.log("collision");
+    } else {
+        this.setState({
+            div1Color: "black",
+            div2Color: "white"
+        })
+    }
+
+    if (this.state.topOff < 10 || this.state.leftOff < 10) {
+        this.setState({
+            div1Color: "green"
+        })
+    } else {
+        this.setState({
+            div1Color: "black",
+            
+        })
+    }
   };
 
 handleCollision = () => {
-    if (this.state.topOff === this.state.top2Off && this.state.leftOff === this.state.left2Off) {
-        console.log("collision");
-    }
+    
 }
 
-  handleKeyDown2 = (e ) => {
-    if (e.keyCode === 39) {
-      this.setState({
-        left2: this.state.left2 + 10,
-      });
-    } else if (e.keyCode === 37) {
-      this.setState({
-        left2: this.state.left2 - 10,
-      });
-    } else if (e.keyCode === 38) {
-      this.setState({
-        top2: this.state.top2 - 10,
-      });
-    } else if (e.keyCode === 40) {
-      this.setState({
-        top2: this.state.top2 + 10,
-      });
-    }
-    const div2 = document.getElementById("div2");
-    console.log("pressed", e.keyCode, "top:", div2.offsetTop, "left", div2.offsetLeft);
-    this.setState({
-        top2Off: div2.offsetTop,
-        left2Off: div2.offsetLeft
-    })
-  };
+  
+
+   
 
   render() {
     return (
-      <div>
+      <div style={{position: "absolute"}}>
         <BlackBox1
           left={this.state.left}
           top={this.state.top}
+          background={this.state.div1Color}
           id="div1"
+
         ><input
         name="1"
           autoFocus
@@ -90,13 +114,9 @@ handleCollision = () => {
         <BlackBox2
           left2={this.state.left2}
           top2={this.state.top2}
+          background={this.state.div2Color}
           id="div2"
-        ><input
-        name="2"
-          autoFocus
-          onKeyDown={(e) => this.handleKeyDown2(e)}
-          
-        />
+        >
         </BlackBox2>
         
       </div>
@@ -107,7 +127,7 @@ handleCollision = () => {
 export const BlackBox1 = styled.div`
   height: 20px;
   width: 20px;
-  background: ${setColor.black};
+  background: ${props => props.background};
   position: relative;
   left: ${(props) => `${props.left}px`};
   top: ${(props) => `${props.top}px`};
@@ -116,12 +136,13 @@ export const BlackBox1 = styled.div`
       opacity: 0;
       cursor: pointer;
       width: 20px;
+      height: 20px;
   }
 `;
 export const BlackBox2 = styled.div`
   height: 20px;
   width: 20px;
-  background: ${setColor.black};
+  background: ${props => props.background};
   position: relative;
   left: ${(props) => `${props.left2}px`};
   top: ${(props) => `${props.top2}px`};
