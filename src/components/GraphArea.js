@@ -6,12 +6,16 @@ import BlueGraph from "./BlueGraph";
 import Playground from './Playground';
 import PixelBackgroud from './PixelBackgroud';
 
+
 class GraphArea extends Component {
     render() {
         return (
             <GraphWrapper>
                 
-                <PixelBackgroud />
+                <PixelBackgroud 
+                palette={this.props.palette}
+                />
+                
             </GraphWrapper>
         );
     }
@@ -21,8 +25,8 @@ export const GraphWrapper = styled.div`
 display: flex;
     align-items: center;
     justify-content: center;
-height: 800px;
-width: 800px;
+height: 600px;
+width: 600px;
 
 
 `;
