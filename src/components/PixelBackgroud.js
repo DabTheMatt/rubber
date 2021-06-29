@@ -7,9 +7,8 @@ class PixelBackgroud extends Component {
         id: 0,
         pixels: [],
         palette: "blue",
-        colors: [],
-        blue: ["03045e", "023e8a", "0077b6", "0096c7", "00b4d8", "48cae4", "90e0ef", "ade8f4", "caf0f8", "ffffff"],
-        green: ["d9ed92", "b5e48c", "99d98c", "76c893", "52b69a", "34a0a4", "168aad", "1a759f", "1e6091", "184e77", "ffffff"]
+        colors: ["03045e", "023e8a", "0077b6", "0096c7", "00b4d8", "48cae4", "90e0ef", "ade8f4", "caf0f8", "ffffff"],
+        greens: ["d9ed92", "b5e48c", "99d98c", "76c893", "52b69a", "34a0a4", "168aad", "1a759f", "1e6091", "184e77", "ffffff"]
     }
 
 componentDidMount = () => {
@@ -22,18 +21,14 @@ componentDidMount = () => {
     let tempPixels = this.state.pixels
     for (let i=0; i<400; i++) {
 
-        if (this.props.palette === "blue") {
+        if (this.state.palette === "blue") {
             console.log("blue", this.state.palette);
         let pixel = {
         id: i,
         clicked: false,
-        color: Math.floor(Math.random() * ((`${this.state.palette}`.length-1) - 1)*1)
+        color: Math.floor(Math.random() * ((this.state.colors.length-1) - 1)*1)
     }
         tempPixels.push(pixel)
-        this.setState({
-            colors: this.state.blue
-        })
-        console.log("colors", this.state.colors);
     }
     
 else if (this.props.palette === "green") {
@@ -41,13 +36,12 @@ else if (this.props.palette === "green") {
     let pixel = {
     id: i,
     clicked: false,
-    color: Math.floor(Math.random() * ((this.state.green.length-1) - 1)*1)
+    color: Math.floor(Math.random() * ((this.state.greens.length-1) - 1)*1)
 }
     tempPixels.push(pixel)
 }
 this.setState({
-    pixels: tempPixels,
-    
+    pixels: tempPixels
 })
     }
 
